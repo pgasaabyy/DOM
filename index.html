@@ -1,0 +1,322 @@
+////////////////////////Fácil
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Trocar Texto</title>
+</head>
+<body>
+    <p id="texto">Texto original</p>
+    <button onclick="trocarTexto()">Clique aqui</button>
+
+    <script>
+        function trocarTexto() {
+            document.getElementById("texto").innerText = "Você clicou no botão!";
+        }
+    </script>
+</body>
+</html>
+
+//////////////////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cor de Fundo</title>
+    <style>
+        #caixa {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(124, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div id="caixa" onmouseover="mudarCor()" onmouseout="voltarCor()"></div>
+
+    <script>
+        function mudarCor() {
+            document.getElementById("caixa").style.backgroundColor = "red";
+        }
+
+        function voltarCor() {
+            document.getElementById("caixa").style.backgroundColor = "blue";
+        }
+    </script>
+</body>
+</html>
+
+////////////////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Tecla Pressionada</title>
+</head>
+<body>
+    <input type="text" onkeydown="mostrarTecla(event)">
+
+    <script>
+        function mostrarTecla(event) {
+            console.log("Tecla pressionada: " + event.key);
+        }
+    </script>
+</body>
+</html>
+
+
+////////////////////////Médio
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Itens</title>
+</head>
+<body>
+    <input type="text" id="itemInput">
+    <button onclick="adicionarItem()">Adicionar</button>
+    <ul id="lista"></ul>
+
+    <script>
+        function adicionarItem() {
+            const input = document.getElementById("itemInput");
+            const li = document.createElement("li");
+            li.textContent = input.value;
+            document.getElementById("lista").appendChild(li);
+            input.value = ""; 
+        }
+    </script>
+</body>
+</html>
+
+//////////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Contador de Cliques</title>
+</head>
+<body>
+    <p id="contador">0</p>
+    <button onclick="contarCliques()">Clique aqui</button>
+
+    <script>
+        let contagem = 0;
+
+        function contarCliques() {
+            contagem++;
+            document.getElementById("contador").innerText = contagem;
+        }
+    </script>
+</body>
+</html>
+
+/////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar/Ocultar Texto</title>
+</head>
+<body>
+    <p id="texto">Este é um texto que pode ser escondido.</p>
+    <button onclick="mostrarOcultar()">Mostrar/Ocultar</button>
+
+    <script>
+        let visivel = true;
+
+        function mostrarOcultar() {
+            const texto = document.getElementById("texto");
+            visivel = !visivel;
+            texto.style.display = visivel ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
+
+
+////////////////////////Difícil
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Validação de Formulário</title>
+</head>
+<body>
+    <form onsubmit="validarFormulario(event)">
+        <input type="email" id="email" placeholder="E-mail" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="mensagem"></p>
+
+    <script>
+        function validarFormulario(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const mensagem = document.getElementById("mensagem");
+            if (!email.includes("@") || !email.includes(".")) {
+                mensagem.innerText = "E-mail inválido. Certifique-se de que contém '@' e um domínio.";
+            } else {
+                mensagem.innerText = "Formulário enviado com sucesso!";
+            }
+        }
+    </script>
+</body>
+</html>
+
+/////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrossel de Imagens</title>
+    <style>
+        #imagem {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <img id="imagem" src="imagem1.jpg" alt="Imagem">
+    <button onclick="anterior()">Anterior</button>
+    <button onclick="proximo()">Próximo</button>
+
+    <script>
+        const imagens = ["imagem1.jpg", "imagem2.jpg", "imagem3.jpg"];
+        let indice = 0;
+
+        function proximo() {
+            indice = (indice + 1) % imagens.length;
+            document.getElementById("imagem").src = imagens[indice];
+        }
+
+        function anterior() {
+            indice = (indice - 1 + imagens.length) % imagens.length;
+            document.getElementById("imagem").src = imagens[indice];
+        }
+    </script>
+</body>
+</html>
+
+//////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cronômetro</title>
+</head>
+<body>
+    <p id="tempo">0</p>
+    <button onclick="iniciar()">Iniciar</button>
+    <button onclick="parar()">Parar</button>
+    <button onclick="zerar()">Zerar</button>
+
+    <script>
+        let tempo = 0;
+        let intervalo;
+
+        function iniciar() {
+            intervalo = setInterval(() => {
+                tempo++;
+                document.getElementById("tempo").innerText = tempo;
+            }, 1000);
+        }
+
+        function parar() {
+            clearInterval(intervalo);
+        }
+
+        function zerar() {
+            parar();
+            tempo = 0;
+            document.getElementById("tempo").innerText = tempo;
+        }
+    </script>
+</body>
+</html>
+
+////////////////////////////////////////////////////////////////////
+
+BONUS
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Memória</title>
+    <style>
+        .carta {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 10px;
+            background-color: rgb(124, 0, 0);
+            text-align: center;
+            line-height: 100px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="cartas"></div>
+
+    <script>
+        const pares = ["A", "A", "B", "B", "C", "C"];
+        let primeiraCarta = null;
+        let segundaCarta = null;
+        let bloqueado = false;
+
+        function iniciarJogo() {
+            const cartasEmbaralhadas = pares.sort(() => Math.random() - 0.5);
+            const container = document.getElementById("cartas");
+            cartasEmbaralhadas.forEach((valor) => {
+                const carta = document.createElement("div");
+                carta.className = "carta";
+                carta.dataset.valor = valor;
+                carta.onclick = revelarCarta;
+                container.appendChild(carta);
+            });
+        }
+
+        function revelarCarta(event) {
+            if (bloqueado) return;
+            const carta = event.target;
+            carta.innerText = carta.dataset.valor;
+
+            if (!primeiraCarta) {
+                primeiraCarta = carta;
+            } else {
+                segundaCarta = carta;
+                bloqueado = true;
+                verificarPares();
+            }
+        }
+
+        function verificarPares() {
+            if (primeiraCarta.dataset.valor === segundaCarta.dataset.valor) {
+                primeiraCarta.onclick = null;
+                segundaCarta.onclick = null;
+                resetarCartas();
+            } else {
+                setTimeout(() => {
+                    primeiraCarta.innerText = "";
+                    segundaCarta.innerText = "";
+                    resetarCartas();
+                }, 2000);
+            }
+        }
+
+       
